@@ -1,11 +1,8 @@
 FROM debian:stretch
 
-MAINTAINER Ann Arbor District Library <github@aadl.org>
+MAINTAINER monkeydri <monkeydri@github.com>
 
-# Set apt sources list to a snapshot
-COPY sources.list /etc/apt/
-
-RUN apt-get -o Acquire::Check-Valid-Until=false update && apt-get -y install \
+RUN apt-get update && apt-get -y install \
   cups=2.2.1* \
   cups-filters \
   cups-pdf \
