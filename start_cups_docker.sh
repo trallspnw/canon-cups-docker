@@ -21,8 +21,6 @@ fi
 PRINTER_BUS=$( ${PRINTER_LSUSB[0]} | awk '{print $2}')
 PRINTER_DEV=$( ${PRINTER_LSUSB[0]} | awk '{print $4}')
 PRINTER_DEV="${PRINTER_DEV%?}"
-echo "${PRINTER_BUS}"
-echo "${PRINTER_DEV}"
 if [[ ! -z ${PRINTER_BUS+x} && ! -z ${PRINTER_DEV+x} ]];  then
         PRINTER_ADDRESS="/dev/bus/usb/${PRINTER_BUS}/${PRINTER_DEV}"
 fi
