@@ -15,6 +15,8 @@ This image is based off [ticosax/cups-in-docker](https://github.com/ticosax/cups
 
 # Running this image
 
+## Way 1 : `docker run`
+
 ```
 docker run -e CUPS_USER_ADMIN=admin \
 -e CUPS_USER_PASSWORD=secr3t \
@@ -24,7 +26,16 @@ docker run -e CUPS_USER_ADMIN=admin \
 --device=/dev/bus/usb/xxx/yyy \
 monkeydri/cups-docker:latest
 ```
-or use the provided startup script `start_cups_docker.sh` (set the `PRINTER_MODEL` var according to your model of Brother printer). The script automatically gets the printer address /dev/bus/usb/xxx/yyy by looking at any connected Brother printer. Thus, be careful if you have more than one Brother printer connected.
+
+## Way 2 : `docker compose`
+
+See provided `docker-compose.yml` file.
+Don't forget to set the `PRINTER_ADDRESS` var and change the `PRINTER_MODEL` value according to your model of Brother printer.
+
+## Way 3 : startup script `start_cups_docker.sh`
+
+The provided startup script `start_cups_docker.sh` automatically gets the printer address /dev/bus/usb/xxx/yyy by looking at any connected Brother printer. Thus, be careful if you have more than one Brother printer connected.
+Don't forget to change the `PRINTER_MODEL` value according to your model of Brother printer.
 
 Access the CUPS server at http://127.0.0.1:631.
 To access it remotely at http://server-ip:631, add the line `DefaultEncryption IfRequested` to `cupsd.conf`.

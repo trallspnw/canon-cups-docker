@@ -23,15 +23,7 @@ if [ -z ${PRINTER_ADDRESS+x} ]; then
         echo "Brother printer cannot be found, cannot run container";
 else
         echo "Running container for Brother printer ${PRINTER_MODEL} at address ${PRINTER_ADDRESS}..."
-        exec /usr/bin/docker run -d \
---name cups-docker \
--e CUPS_USER_ADMIN=admin \
--e CUPS_USER_PASSWORD=secr3t \
--e PRINTER_MODEL=${PRINTER_MODEL} \
--p 631:631/tcp \
--v /path/to/cupsd.conf:/etc/cups/cupsd.conf \
---device=${PRINTER_ADDRESS} \
-monkeydri/cups-docker:latest
+        exec env PRINTER_ADDRESS="${PRINTER_ADDRESS}" /usr/bin/docker-compose -f /path/to/docker-compose.yml up
 fi
 
 exit 0
