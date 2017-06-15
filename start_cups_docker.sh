@@ -1,6 +1,8 @@
 #!/bin/bash
 
 PRINTER_MODEL=HL-L2300D
+PRINTER_VID=0x04f9
+PRINTER_PID=0x0061
 
 # Stop Container (if running)
 echo "Stopping current container..."
@@ -9,8 +11,15 @@ echo "Stopping current container..."
 
 # Get Printer address on host, ex : /dev/bus/usb/002/008
 echo "Getting printer info..."
-PRINTER_BUS=$(/usr/bin/lsusb | grep Brother | awk '{print $2}')
-PRINTER_DEV=$(/usr/bin/lsusb | grep Brother | awk '{print $4}')
+OLD_IFS="${IFS}"
+IFS=$'\n'
+PRINTER_LSUSB=( $(/usr/bin/lsusb -d ${PRINTER_VID}:${PRINTER_PID}) )
+IFS="${OLD_IFS}"
+if [ ${#PRINTER_LSUSB[@]} -gt 1 ]; then
+        echo "Warning : more than one printer found with specified VID and PID, selecting first one"
+fi
+PRINTER_BUS=$( ${PRINTER_LSUSB[0]} | awk '{print $2}')
+PRINTER_DEV=$( ${PRINTER_LSUSB[0]} | awk '{print $4}')
 PRINTER_DEV="${PRINTER_DEV%?}"
 echo "${PRINTER_BUS}"
 echo "${PRINTER_DEV}"

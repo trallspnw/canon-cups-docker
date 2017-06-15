@@ -34,8 +34,12 @@ Don't forget to set the `PRINTER_ADDRESS` var and change the `PRINTER_MODEL` val
 
 ## Way 3 : startup script `start_cups_docker.sh`
 
-The provided startup script `start_cups_docker.sh` automatically gets the printer address /dev/bus/usb/xxx/yyy by looking at any connected Brother printer. Thus, be careful if you have more than one Brother printer connected.
-Don't forget to change the `PRINTER_MODEL` value according to your model of Brother printer.
+The provided startup script `start_cups_docker.sh` automatically gets the printer address /dev/bus/usb/xxx/yyy by looking at 
+any Brother printer matching the provided VID (USB vendor ID) and PID (USB product ID).
+Don't forget to change the `PRINTER_MODEL`, `PRINTER_VID` and `PRINTER_PID` values according to your model of Brother printer.
+
+To get the information about the correct VID and PID, one could check the available lists online (ex : http://www.linux-usb.org/usb.ids, https://usb-ids.gowdy.us/read/UD/04f9 or http://www.the-sz.com/products/usbid/).
+Also you can use the provided script `identify_brother_printer.sh` which output the VID and PID for any connected Brother USB printer.
 
 Access the CUPS server at http://127.0.0.1:631.
 To access it remotely at http://server-ip:631, add the line `DefaultEncryption IfRequested` to `cupsd.conf`.
