@@ -1,6 +1,6 @@
-FROM debian:stretch
+FROM debian:buster
 
-MAINTAINER monkeydri <monkeydri@github.com>
+MAINTAINER stonecan <monkeydri@github.com>
 
 RUN apt-get update && apt-get -y install \
 cups=2.2.1* \
