@@ -1,9 +1,9 @@
 FROM debian:buster
 
-MAINTAINER stonecan <monkeydri@github.com>
+MAINTAINER stonecan
 
 RUN apt-get update && apt-get -y install \
-cups=2.2.1* \
+cups=2.2.10* \
 cups-filters \
 cups-pdf \
 whois \
@@ -24,16 +24,10 @@ VOLUME /etc/cups/ /var/log/cups /var/spool/cups /var/cache/cups
 
 COPY etc-pam.d-cups /etc/pam.d/cups
 
-# Copy brother driver installer and installer script
-COPY linux-brprinter-installer-2.1.1-1 /root/linux-brprinter-installer-2.1.1-1
-RUN chmod +x /root/linux-brprinter-installer-2.1.1-1
-COPY install_brother_driver.sh /root/install_brother_driver.sh
-RUN chmod +x /root/install_brother_driver.sh
-
 COPY start_cups.sh /root/start_cups.sh
 RUN chmod +x /root/start_cups.sh \
   && mkdir -p /etc/cups/ssl
 
-CMD /root/install_brother_driver.sh & /root/start_cups.sh
+CMD /root/start_cups.sh
 
 EXPOSE 631
