@@ -2,7 +2,7 @@
 
 echo "Please plug your Canon USB printer..."
 
-# wait for a Brother printer to be detected
+# wait for a Canon printer to be detected
 while [ $(/usr/bin/lsusb | grep -c Canon) -lt 1 ]; do
         echo "no Canon USB printer found, waiting";
         sleep 1
