@@ -12,6 +12,7 @@ This image is based off didrip/cups-docker (https://github.com/didrip/cups-docke
 
 * Debian buster is used as the base image.
 * Modified USB backend for Canon printers.
+* Remote access to server is enabled by default.
 
 # Running this image
 
@@ -42,4 +43,4 @@ To get the information about the correct VID and PID, one could check the availa
 Also you can use the provided script `identify_canon_printer.sh` which output the VID and PID for any connected Canon USB printer.
 
 Access the CUPS server at http://127.0.0.1:631.
-To access it remotely at http://server-ip:631, add the line `DefaultEncryption IfRequested` to `cupsd.conf`.
+To disable remote access at http://server-ip:631, remove the line `DefaultEncryption IfRequested` from `cupsd.conf`.
