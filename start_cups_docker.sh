@@ -1,13 +1,13 @@
 #!/bin/bash
 
-PRINTER_MODEL=HL-L2300D
-PRINTER_VID=0x04f9
-PRINTER_PID=0x0061
+# VID/PID for my Canon PIXMA iP3600 printer
+PRINTER_VID=0x04a9
+PRINTER_PID=0x10ca
 
 # Stop Container (if running)
 echo "Stopping current container..."
-/usr/bin/docker stop cups-docker
-/usr/bin/docker rm cups-docker
+/usr/bin/docker stop canon-cups-docker
+/usr/bin/docker rm canon-cups-docker
 
 # Get Printer address on host, ex : /dev/bus/usb/002/008
 echo "Getting printer info..."
@@ -25,11 +25,11 @@ if [[ ! -z ${PRINTER_BUS+x} && ! -z ${PRINTER_DEV+x} ]];  then
         PRINTER_ADDRESS="/dev/bus/usb/${PRINTER_BUS}/${PRINTER_DEV}"
 fi
 
-# Run docker container if Brother printer is found
+# Run docker container if Canon printer is found
 if [ -z ${PRINTER_ADDRESS+x} ]; then
-        echo "Brother printer cannot be found, cannot run container";
+        echo "Canon printer cannot be found, cannot run container";
 else
-        echo "Running container for Brother printer ${PRINTER_MODEL} at address ${PRINTER_ADDRESS}..."
+        echo "Running container for Canon printer at ${PRINTER_ADDRESS}..."
         exec env PRINTER_ADDRESS="${PRINTER_ADDRESS}" /usr/bin/docker-compose -f /path/to/docker-compose.yml up
 fi
 
