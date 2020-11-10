@@ -1,5 +1,5 @@
 cups-server:
-  container_name: cups-docker
+  container_name: canon-cups-docker
   restart: always
   image: stonecan/canon-cups-docker:latest
   ports:
