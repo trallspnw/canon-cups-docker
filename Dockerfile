@@ -1,9 +1,9 @@
-FROM debian:buster
+FROM debian:buster-slim
 
 MAINTAINER stonecan
 
 RUN apt-get update && apt-get -y install \
-cups=2.2.10* \
+cups \
 cups-filters \
 cups-pdf \
 whois \
