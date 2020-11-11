@@ -10,4 +10,4 @@ cups-server:
     - CUPS_USER_ADMIN=admin
     - CUPS_USER_PASSWORD=secr3t
   devices:
-    - "/dev/bus/usb/002/005"
+    - "/dev/bus/usb/002/005:/dev/bus/usb/002/005"
