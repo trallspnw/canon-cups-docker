@@ -3,6 +3,7 @@ FROM debian:buster
 MAINTAINER stonecan
 
 RUN apt-get update && apt-get -y install \
+apt-transport-https \ 
 cups \
 cups-filters \
 cups-pdf \
