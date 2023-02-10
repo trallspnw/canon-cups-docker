@@ -1,19 +1,6 @@
 FROM debian:buster
 
-MAINTAINER stonecan
-
-RUN apt-get update && apt-get -y install \
-apt-transport-https \ 
-cups \
-cups-filters \
-cups-pdf \
-whois \
-usbutils \
-lib32stdc++6 \
-lib32gcc1 \
-libc6-i386 \
-wget \
-&& rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get -y cups
 
 # Remove backends that don't make sense for container
 RUN rm /usr/lib/cups/backend/parallel \
