@@ -1,6 +1,6 @@
 FROM debian:buster
 
-RUN apt-get update && apt-get -y cups
+RUN apt-get update && apt-get -y upgrade && apt-get -y cups
 
 # Remove backends that don't make sense for container
 RUN rm /usr/lib/cups/backend/parallel \
